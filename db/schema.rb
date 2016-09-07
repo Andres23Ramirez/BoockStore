@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906020224) do
+ActiveRecord::Schema.define(version: 20160906224704) do
 
   create_table "libros", force: :cascade do |t|
     t.string   "titulo"
@@ -19,8 +19,12 @@ ActiveRecord::Schema.define(version: 20160906020224) do
     t.string   "ISBN"
     t.text     "reseña"
     t.integer  "calificacion"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -29,10 +33,8 @@ ActiveRecord::Schema.define(version: 20160906020224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.integer  "libro_id"
   end
 
-  add_index "reviews", ["libro_id"], name: "index_reviews_on_libro_id"
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
 
   create_table "scores", force: :cascade do |t|
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 20160906020224) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "name"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
